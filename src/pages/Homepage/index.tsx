@@ -30,11 +30,16 @@ export function Homepage() {
   // const [images2, setImages2] = useState<any[]>([]);
 
   function onSubmit(values: FormTypes, formikHelpers: FormikHelpers<FormTypes>) {
-    // let nome = values.nome;
+    let nome = values.nome;
     let lista_imagens = values.imagem;
     // console.log(`Nome: ${nome}`);
     // console.log('lista_imagens:');
-    console.log(lista_imagens);
+    // console.log(lista_imagens);
+    const data = new FormData();
+    data.append('nome', nome);
+    lista_imagens.forEach(imagem => {
+      data.append('imagem', imagem);
+    });
   }
 
   return (
