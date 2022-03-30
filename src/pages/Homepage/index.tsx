@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Dropzone } from "../../components/Dropzone";
 import * as Yup from "yup";
 import { Field, Form, Formik, FormikHelpers } from "formik";
+import api from "../../utils/api";
 
 interface FormTypes {
   nome: string;
@@ -29,7 +30,7 @@ export function Homepage() {
   const [images2, setImages2] = useState([]);
   // const [images2, setImages2] = useState<any[]>([]);
 
-  function onSubmit(values: FormTypes, formikHelpers: FormikHelpers<FormTypes>) {
+  async function onSubmit(values: FormTypes, formikHelpers: FormikHelpers<FormTypes>) {
     let nome = values.nome;
     let lista_imagens = values.imagem;
     // console.log(`Nome: ${nome}`);
@@ -40,6 +41,15 @@ export function Homepage() {
     lista_imagens.forEach(imagem => {
       data.append('imagem', imagem);
     });
+
+    await api.post('/item', data)
+      .then(() => {
+        alert('salvo');
+        console.log('salvo');
+      })
+      .catch((erro) => {
+        console.error(erro);
+      });
   }
 
   return (
