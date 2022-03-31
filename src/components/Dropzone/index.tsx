@@ -2,7 +2,7 @@ import ImageUploading, { ImageListType } from "react-images-uploading";
 import { GrUpdate } from "react-icons/gr";
 import { MdSystemUpdateAlt } from "react-icons/md";
 import { AiOutlineDelete } from "react-icons/ai";
-import { Alert, Button, ButtonGroup, Card, CardFooter, CardGroup, CardImg } from "reactstrap";
+import { Alert, Button, ButtonGroup, Card, CardBody, CardFooter, /*CardGroup,*/ CardImg } from "reactstrap";
 import styled from "styled-components";
 
 interface DropzoneProps {
@@ -57,10 +57,13 @@ export function Dropzone(props: DropzoneProps) {
               Selected file is not match your desired resolution
             </span>} */}
           </div>}
-          <CardGroup>
+          {/* <CardGroup> */}
+          <div className="d-flex flex-row justify-content-center">
             {imageList.map((image, index) => (
               <CardEstilizado key={index}>
-                <CardImgEstilizado src={image.dataURL} alt={`imagem-${index}`} />
+                <CardBody className="p-0 m-0 d-flex justify-content-center">
+                  <CardImgEstilizado src={image.dataURL} alt={`imagem-${index}`} />
+                </CardBody>
                 <CardFooter className="p-0 m-0">
                   <ButtonGroup className="w-100">
                     <Button
@@ -83,7 +86,8 @@ export function Dropzone(props: DropzoneProps) {
                 </CardFooter>
               </CardEstilizado>
             ))}
-          </CardGroup>
+          </div>
+          {/* </CardGroup> */}
         </div>
       )}
     </ImageUploading>
@@ -95,10 +99,12 @@ const BotaoUploadEstilizado = styled(Button)`
 `;
 
 const CardEstilizado = styled(Card)`
-  width: 168px !important;
-  /* height: 150px; */
+  width: 170px !important;
+  margin: 5px !important;
+  height: 210px !important;
 `;
 
 const CardImgEstilizado = styled(CardImg)`
-  width: 168px !important;
+  width: 170px !important;
+  height: 170px !important;
 `;
